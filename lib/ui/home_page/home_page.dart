@@ -1,11 +1,17 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/logo_widget.dart';
+import 'widgets/course_card_widget.dart';
+import 'widgets/footer_widget.dart';
+import 'widgets/our_team_widget.dart';
+import 'widgets/testimonials_widget.dart';
+import 'widgets/used_by_brands.dart';
+import 'widgets/why_otoma_tags_widget.dart';
+import 'widgets/why_otoma_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -249,6 +255,148 @@ class _HomePageState extends State<HomePage>
                     SizedBox(
                       height: 199.h,
                     ),
+                    SizedBox(
+                      child: ClipRRect(
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: const Alignment(-0.26, -1),
+                              child: Transform.rotate(
+                                angle: pi / 3,
+                                child: Image.asset(
+                                  "assets/pngs/lock.png",
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 100,
+                              top: 750,
+                              child: Transform.rotate(
+                                angle: pi / 4,
+                                child: Image.asset(
+                                  "assets/pngs/phone.png",
+                                ),
+                              ),
+                            ),
+                            BackdropFilter(
+                              filter: ImageFilter.blur(
+                                sigmaX: 3,
+                                sigmaY: 3,
+                              ),
+                              child: Container(),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 60,
+                                horizontal: 140.w,
+                              ),
+                              child: GridView(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 17.w,
+                                  mainAxisSpacing: 93.h,
+                                  childAspectRatio: 1.2,
+                                ),
+                                children: const [
+                                  CourseCardWidget(
+                                    courseImagePath: "assets/pngs/course_1.png",
+                                    category: "Twitch",
+                                    categoryColor: Color(0xFFAC7EFF),
+                                    filledButtonColor: Color(0xFF75E9BF),
+                                    price: "Get Free",
+                                  ),
+                                  CourseCardWidget(
+                                    categoryColor: Color(0xFF72E3A6),
+                                    price: "Get for 99\$",
+                                    filledButtonColor: Color(0xFFFFB281),
+                                    courseImagePath: "assets/pngs/course_2.png",
+                                    category: "Webdesign",
+                                  ),
+                                  CourseCardWidget(
+                                    categoryColor: Color(0xFF8BABF0),
+                                    price: "Get for 9\$",
+                                    filledButtonColor: Color(0xFFFFB281),
+                                    courseImagePath: "assets/pngs/course_3.png",
+                                    category: "Facebook",
+                                  ),
+                                  CourseCardWidget(
+                                    categoryColor: Color(0xFFE23834),
+                                    price: "Get for 9\$",
+                                    filledButtonColor: Color(0xFFFFB281),
+                                    courseImagePath: "assets/pngs/course_1.png",
+                                    category: "Facebook",
+                                  ),
+                                  CourseCardWidget(
+                                    categoryColor: Color(0xFF72E3A6),
+                                    price: "Get for 99\$",
+                                    filledButtonColor: Color(0xFFFFB281),
+                                    courseImagePath: "assets/pngs/course_2.png",
+                                    category: "Webdesign",
+                                  ),
+                                  CourseCardWidget(
+                                    categoryColor: Color(0xFF8BABF0),
+                                    price: "Get for 9\$",
+                                    filledButtonColor: Color(0xFFFFB281),
+                                    courseImagePath: "assets/pngs/course_3.png",
+                                    category: "Facebook",
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const OurTeamWidget(),
+                    SizedBox(
+                      height: 175.h,
+                    ),
+                    const TestimonialsWidget(),
+                    SizedBox(
+                      height: 52.h,
+                    ),
+                    const UsedByBrandsWidget(),
+                    SizedBox(
+                      height: 160.h,
+                    ),
+                    const FooterWidget(),
+                    SizedBox(
+                      height: 38.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "Terms and Privacy Policy",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                        Text(
+                          "Copyright © 2021 Otoma",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                        Text(
+                          "Site Map - I find a bug ? ",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 100.h,
+                    ),
                   ],
                 ),
               ),
@@ -355,346 +503,6 @@ class _HomePageState extends State<HomePage>
           ),
         )
       ],
-    );
-  }
-}
-
-class WhyOtomaTagsWidget extends StatelessWidget {
-  const WhyOtomaTagsWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 140.w),
-      child: SizedBox(
-        height: 131.h,
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            WhyTagsWidget(
-              icon: "calendar",
-              title: "Best qualities",
-              subtitle:
-                  "Et quoniam mirari posse quosdam peregrinos existimo haec lecturos.",
-              outlineColor: Color(0xFF4F486A),
-            ),
-            WhyTagsDivider(),
-            WhyTagsWidget(
-              title: "+100 templates",
-              subtitle:
-                  "Et quoniam mirari posse quosdam peregrinos existimo haec lecturos.",
-              icon: "clock",
-              outlineColor: Color(0xFF486A67),
-            ),
-            WhyTagsDivider(),
-            WhyTagsWidget(
-              title: "For all social media",
-              subtitle:
-                  "Et quoniam mirari posse quosdam peregrinos existimo haec lecturos.",
-              icon: "clock_red",
-              outlineColor: Color(0xFF6A4848),
-            ),
-            WhyTagsDivider(),
-            WhyTagsWidget(
-              title: "Lorem Ipsum",
-              subtitle:
-                  "Et quoniam mirari posse quosdam peregrinos existimo haec lecturos.",
-              icon: "clock_blue",
-              outlineColor: Color(0xFF485A6A),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class WhyTagsDivider extends StatelessWidget {
-  const WhyTagsDivider({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // margin: EdgeInsets.symmetric(horizontal: 50.w),
-      height: double.infinity,
-      width: 2.0,
-      color: const Color(0xFF4F486A),
-    );
-  }
-}
-
-class WhyTagsWidget extends StatelessWidget {
-  const WhyTagsWidget({
-    Key? key,
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-    required this.outlineColor,
-  }) : super(key: key);
-  final String title;
-  final String subtitle;
-  final String icon;
-  final Color outlineColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 313.w,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(17.5),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: outlineColor,
-                width: 1.5,
-              ),
-              shape: BoxShape.circle,
-            ),
-            child: SvgPicture.asset(
-              "assets/svgs/$icon.svg",
-            ),
-            alignment: Alignment.center,
-          ),
-          SizedBox(
-            width: 41.w,
-          ),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17.sp,
-                  ),
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    color: const Color(0xFF8790A2),
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14.sp,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class WhyOtomaWidget extends StatelessWidget {
-  const WhyOtomaWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      child: Stack(
-        children: [
-          BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 3,
-              sigmaY: 3,
-            ),
-            child: Container(),
-          ),
-          Center(
-            child: Container(
-              height: 859.h,
-              width: 1640.w,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFF8668F2),
-                  width: 1.5,
-                ),
-                color: const Color(0xFF4F486A).withOpacity(0.64),
-                borderRadius: BorderRadius.circular(110),
-              ),
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        right: 127.w,
-                        left: 100.w,
-                      ),
-                      child: Row(
-                        // crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Flexible(
-                            flex: 3,
-                            child: Image.asset(
-                              "assets/pngs/pencil_man.png",
-                              height: 685.h,
-                            ),
-                          ),
-                          Flexible(
-                            flex: 4,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: "Why ",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 75.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: "Otoma ",
-                                        style: TextStyle(
-                                          color: const Color(0xFFFFB281),
-                                          fontSize: 75.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: "is a new beginning.",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 75.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 36.h,
-                                ),
-                                Text(
-                                  "Et quoniam mirari posse quosdam peregrinos existimo haec lecturos forsitan, si contigerit,  cum oratio ad ea monstranda deflexerit quae Romae gererentur",
-                                  style: TextStyle(
-                                    color: const Color(0xFF8790A2),
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 45.h,
-                                ),
-                                Container(
-                                  height: 60.sp,
-                                  width: 240.sp,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFF8668F2),
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "Find design",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 17.sp,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.8,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF8C89C8),
-                            Color(0xFFD295C2),
-                          ],
-                          begin: Alignment.topRight,
-                          end: Alignment(-1, 1.2),
-                        ),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(110),
-                          bottomRight: Radius.circular(110),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            left: 1370,
-            top: 100,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Stack(
-                children: [
-                  Transform.rotate(
-                    angle: -0.4,
-                    child: Image.asset(
-                      "assets/pngs/hourglass.png",
-                    ),
-                  ),
-                  BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 3,
-                      sigmaY: 3,
-                    ),
-                    child: Container(),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 400,
-            left: 60,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Stack(
-                children: [
-                  Transform.rotate(
-                    angle: 0.4,
-                    child: Image.asset(
-                      "assets/pngs/phone.png",
-                    ),
-                  ),
-                  BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 3,
-                      sigmaY: 3,
-                    ),
-                    child: Container(),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
